@@ -42,16 +42,15 @@ public class CellsActivity extends Activity implements OnClickListener,
         setContentView(R.layout.cells);
         makeCells();
         generate();
-
+        Task.showMessage(this, "Игра 'Карточки' Найдите все пары карточек");
     }
 
     void generate() {
 
-        //Эту строку нужно удалить
-        Task.showMessage(this, "Игра 'Карточки' Найдите все пары карточек");
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 field[i][j] = "";
+                opened[i][j] = false;
             }
         }
         int[] indices = new int[HEIGHT * WIDTH];
@@ -131,6 +130,8 @@ public class CellsActivity extends Activity implements OnClickListener,
                     isChoosen = false;
                     if (CheckWin()) {
                         Task.showMessage(this, "Поздравляем, вы выиграли!");
+                        generate();
+                        showCells();
                     }
                 }
                 showCells();
@@ -174,6 +175,7 @@ public class CellsActivity extends Activity implements OnClickListener,
     }
 
     void makeCells() {
+
         cells = new Button[HEIGHT][WIDTH];
         GridLayout cellsLayout = (GridLayout) findViewById(R.id.CellsLayout);
         cellsLayout.removeAllViews();
