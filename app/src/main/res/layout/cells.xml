@@ -8,16 +8,15 @@
     <HorizontalScrollView
         android:id="@+id/HorizontalScrollView01"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_vertical">
 
         <GridLayout
             android:id="@+id/CellsLayout"
-            android:background="@android:color/holo_green_light"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-        >
-        </GridLayout>
+            android:background="#BD9E41"
+            android:padding="5dp"></GridLayout>
     </HorizontalScrollView>
 
 </ScrollView>
