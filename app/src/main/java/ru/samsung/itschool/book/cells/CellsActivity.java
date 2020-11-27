@@ -24,6 +24,7 @@ import task.Task;
 
 public class CellsActivity extends Activity implements OnClickListener,
         OnLongClickListener {
+    // Класс обработки игры
 
     private int WIDTH = 6;
     private int frame = 0;
@@ -38,6 +39,7 @@ public class CellsActivity extends Activity implements OnClickListener,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Действия при создании
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cells);
         makeCells();
@@ -46,7 +48,7 @@ public class CellsActivity extends Activity implements OnClickListener,
     }
 
     void generate() {
-
+        // Инициализация поля
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 field[i][j] = "";
@@ -81,6 +83,7 @@ public class CellsActivity extends Activity implements OnClickListener,
     }
 
     void showCells() {
+        // Отображение поля
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 if (opened[i][j]) {
@@ -93,21 +96,14 @@ public class CellsActivity extends Activity implements OnClickListener,
         }
     }
 
-    int randint(int min, int max) {
-        return (int) (Math.random() * ((max - min) + 1)) + min;
-    }
-
     @Override
     public boolean onLongClick(View v) {
-        //Эту строку нужно удалить
-        //Stub.show(this, "Добавьте код в функцию активности onLongClick() - реакцию на долгое нажатие на клетку");
         return false;
     }
 
     @Override
     public void onClick(View v) {
-        //Эту строку нужно удалить
-        //Stub.show(this, "Добавьте код в функцию активности onClick() - реакцию на нажатие на клетку");
+        // Обработка нажатия на кнопку
 
         Button tappedCell = (Button) v;
         int tappedX = getX(tappedCell);
@@ -151,12 +147,8 @@ public class CellsActivity extends Activity implements OnClickListener,
         showCells();
     }
 
-    /*
-     * NOT FOR THE BEGINNERS
-     * ==================================================
-     */
-
     boolean CheckWin() {
+        // Проверка победы
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
                 if (!opened[i][j])
@@ -175,7 +167,7 @@ public class CellsActivity extends Activity implements OnClickListener,
     }
 
     void makeCells() {
-
+        // Создание элементов интерфейса
         cells = new Button[HEIGHT][WIDTH];
         GridLayout cellsLayout = (GridLayout) findViewById(R.id.CellsLayout);
         cellsLayout.removeAllViews();
@@ -191,39 +183,6 @@ public class CellsActivity extends Activity implements OnClickListener,
                 cells[i][j].setText(field[i][j]);
                 cellsLayout.addView(cells[i][j]);
             }
-        }
-    }
-
-//    void Update() {
-//        int framePeriod = 30;
-//        frame++;
-//        if (frame == framePeriod && reset) {
-//            int tappedX = getX(targetButton);
-//            int tappedY = getY(targetButton);
-//            opened[tappedY][tappedX] = false;
-//            tappedX = getX(targetButton2);
-//            tappedY = getY(targetButton2);
-//            opened[tappedY][tappedX] = false;
-//            targetButton = null;
-//            targetButton2 = null;
-//            frame = 0;
-//            reset = false;
-//            showCells();
-//        }
-//    }
-
-    class MyTimer extends CountDownTimer {
-        MyTimer() {
-            super(100000, 10);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-//            Update();
-        }
-
-        @Override
-        public void onFinish() {
         }
     }
 }
